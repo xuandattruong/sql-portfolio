@@ -2,6 +2,7 @@ database: AdventureWorks
 data source: https://drive.google.com/file/d/1AzhEfmHAMFCVoHBJd0_ccBrivA1ZD3Tf/view
 
 -- Looking at data of all three years
+
 	select * from sales_2015
 	union
 	select * from sales_2016 
@@ -9,6 +10,7 @@ data source: https://drive.google.com/file/d/1AzhEfmHAMFCVoHBJd0_ccBrivA1ZD3Tf/v
 	select * from sales_2017
 
 -- Display total number of orders in three years by product key, using a sub-query
+
 	select sales.ProductKey, sales.TerritoryKey, sum(sales.OrderQuantity) as TotalOrderQuantity
 	from
 		(
@@ -35,6 +37,7 @@ data source: https://drive.google.com/file/d/1AzhEfmHAMFCVoHBJd0_ccBrivA1ZD3Tf/v
 	order by 3 desc
 	
 -- Caculate the return rate by product category in three years, using a common table expression
+
 	with 
 		total_sales as
 			(
@@ -59,6 +62,7 @@ data source: https://drive.google.com/file/d/1AzhEfmHAMFCVoHBJd0_ccBrivA1ZD3Tf/v
 	group by 1
 
 -- Find the products that the return rate in 2017 was higher than that in 2016
+
 	with 
 		return_2016 as 
 			(
@@ -83,6 +87,7 @@ data source: https://drive.google.com/file/d/1AzhEfmHAMFCVoHBJd0_ccBrivA1ZD3Tf/v
 	where r16.ReturnRate < r17.ReturnRate
 	
 -- Display return rate in 2017 of products having sold quantity in 2017 higher than average number of 2016 products
+
 	select s.ProductKey, sum(r.ReturnQuantity)/sum(s.OrderQuantity) as ReturnRate2017
 	from sales_2017 as s
 		left join returns as r 
