@@ -1,3 +1,5 @@
+database: AdventureWorks
+data source: https://drive.google.com/file/d/1AzhEfmHAMFCVoHBJd0_ccBrivA1ZD3Tf/view
 
 -- Looking at data of all three years
 	select * from sales_2015
